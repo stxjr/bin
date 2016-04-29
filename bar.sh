@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 pkill lemonbar
 
 fg=$(getcol 1)
@@ -82,7 +82,7 @@ done | lemonbar -f $glyphs \
 
 # second bar for workspaces on top of the normal one
 sleep 0.01; bspc subscribe | bspwmdesktop | lemonbar \
-    -B \#00000000 \
+    -B \#$bg \
     -u 2 \
     -g 100x${height}+636 \
     -f $font -f $glyphs &

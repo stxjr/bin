@@ -1,11 +1,11 @@
-#!/bin/dash
+#!/bin/sh
 
 while read -r line; do
     case $line in
         W*) window=""
             IFS=':'
             set -- ${line#?}
-            while [[ $# -gt 0 ]]; do
+            while [ $# -gt 0 ]; do
                 case $1 in
                     O*) window="${window}%{F#$(getcol 1)}%{F-}"
                         ;;

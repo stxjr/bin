@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 
 f=3 b=4
 for j in f b; do

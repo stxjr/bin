@@ -1,0 +1,28 @@
+#!/bin/dash
+
+while read -r line; do
+    case $line in
+        W*) window=""
+            IFS=':'
+            set -- ${line#?}
+            while [[ $# -gt 0 ]]; do
+                case $1 in
+                    O*) window="${window}%{F#$(getcol 1)}%{F-}"
+                        ;;
+                    F*) window="${window}%{F#$(getcol 1)}%{F-}"
+                        ;;
+                    U*) window="${window}%{F#$(getcol 1)}%{F-}"
+                        ;;
+                    o*) window="${window}%{F#$(getcol 0)}%{F-}"
+                        ;;
+                    f*) window="${window}%{F#$(getcol 0)}%{F-}"
+                        ;;
+                    u*) window="${window}%{F#$(getcol 0)}%{F-}"
+                        ;;
+                esac
+                shift
+            done
+            ;;
+    esac
+    echo "$window"
+done

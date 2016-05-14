@@ -26,8 +26,8 @@ x=$padding
 y=$padding
 
 # Screen size
-sw=1366
-sh=768
+sw=1360
+sh=758
 
 case $1 in
     # Keeping this here for readability

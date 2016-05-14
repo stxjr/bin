@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # define options
-bg=222222
+bg=e8e8ea
 fg=$(getcol 1)
-height=40
+height=30
 length=200
 
 duration=5 # in seconds

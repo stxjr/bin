@@ -1,3 +1,0 @@
-#!/bin/sh
-
-printf '\e]710;%s\007' "xft:${font}:pixelsize=12"

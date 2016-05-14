@@ -1,0 +1,7 @@
+#!/bin/sh
+# replacement script for exec in xinitrc
+# copyright wtfpl or something
+
+while true; do
+    sleep 1
+done

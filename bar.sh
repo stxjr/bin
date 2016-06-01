@@ -1,10 +1,10 @@
-!/bin/sh
+#!/bin/sh
 
 pkill lemonbar
 
 fg=$(getcol 1)
-altfg=$(getcol 7)
-bg=e8e8ea
+altfg=$(getcol 3)
+bg=222222
 
 font="-fuyuki-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="siji:pixelsize=10"
@@ -28,19 +28,19 @@ w4=""
 w5=""
 w6=""
 
-clk()
+function clk
 {
     echo -n " $(date "+%l:%M" | sed 's/ //g')"
 }
 
-dat()
+function dat
 {
     echo -n " $(date "+%B %d" | tr [A-Z] [a-z])"
 }
 
-mus()
+function mus
 {
-    music=$(mpc current -f "[%title%[ in %album%][ by %artist%]]|%file%")
+    music=$(mpc current -f "%title%[ by %artist%][ in %album%]|%file%")
 
     playing=$(mpc status | sed -n 2p | awk '{print $1}')
     if [ $playing = "[playing]" ] ; then
@@ -52,7 +52,7 @@ mus()
     echo -n "${symbol} ${music}"
 }
 
-musperc()
+function musperc
 {
     percent="$(mpc status | awk '{print $4}' | sed -n 2p | tr -d "% ( )")"
 
@@ -70,19 +70,19 @@ musperc()
     echo $buf
 }
 
-win()
+function win
 {
     echo -n " $(xtitle)"
 }
 
-vol()
+function vol
 {
     percent=$(amixer get Master | sed -n 5p | awk '{print $3}')
 
     echo -n " ${percent}"
 }
 
-bat()
+function bat
 {
     percent=$(cat /sys/class/power_supply/BAT1/capacity)
     status=$(cat /sys/class/power_supply/BAT1/status)
@@ -109,7 +109,22 @@ bat()
     fi
 }
 
-wrk()
+function wifi
+{
+    strength=$(iwconfig wlp13s0 | grep -i quality | awk '{ printf $2 }' | cut -c 9-10)
+
+    if [ $strength -le 23 ]; then
+        echo ""
+    elif [ $strength -le 46 ]; then
+        echo ""
+    elif [ $strength -le 70 ]; then
+        echo ""
+    else
+        echo ""
+    fi
+}
+
+function wrk
 {
     NUMB=$(xprop -root -notype _NET_CURRENT_DESKTOP | cut -d= -f2);
     case "$NUMB" in
@@ -130,11 +145,11 @@ wrk()
         echo "$WORKSPACE"
     }
 
-floatbars()
+function floatbars
 {
     # left bar
     while true; do
-        buf="%{c}$(mus)"
+        buf="%{c}%{A:mpc toggle:}$(mus)%{A}"
         echo "${buf}"
         sleep 0.1
     done | lemonbar -f $glyphs \
@@ -144,7 +159,7 @@ floatbars()
         -R \#$fg \
         -u 3 \
         -r $borderwidth \
-        -g 200x$height+85+15 | sh &
+        -g 250x$height+85+15 | sh &
 
     # middle bar
     while true; do
@@ -162,7 +177,7 @@ floatbars()
 
     # right bar
     while true; do
-        buf="%{c}$(bat)   $(dat)   $(clk)"
+        buf="%{c}$(wifi)    $(bat)    $(dat)    $(clk)"
         echo "${buf}"
         sleep 0.1
     done | lemonbar -f $glyphs \
@@ -172,7 +187,7 @@ floatbars()
         -R \#$fg \
         -u 3 \
         -r $borderwidth \
-        -g 200x$height+1075+15 | sh &
+        -g 250x$height+1035+15 | sh &
 
     # # music bar
     # while true; do
@@ -189,10 +204,10 @@ floatbars()
     #     -g 400x$height+925+715 | sh &
 }
 
-topbar()
+function topbar
 {
     while true; do
-        buf="$(mus)"
+        buf="$(muscont) $(mus)"
         buf="${buf}%{c}$(wrk)"
         buf="${buf}%{r}$(bat)   $(dat)   $(clk)"
         echo "        ${buf}        "

@@ -6,6 +6,11 @@ fg=$(getcol 1)
 altfg=$(getcol 3)
 bg=222222
 
+fgf="%{F#$fg}"
+altfgf="%{F#$altfg}"
+bgf="%{F#$bg}"
+endf="%{F-}"
+
 font="-sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="siji:pixelsize=10"
 
@@ -61,9 +66,9 @@ function musperc
     buf=""
     for i in $(seq 1 $muslength); do
         if test $i -le $percent; then
-            buf="${buf}%{F#$fg}─"
+            buf="${buf}$fgf─$endf"
         else
-            buf="${buf}%{F#$altfg}─%{F-}"
+            buf="${buf}$fgf─$endl"
         fi
     done
 
@@ -114,17 +119,17 @@ function wrk
     NUMB=$(xprop -root -notype _NET_CURRENT_DESKTOP | cut -d= -f2);
     case "$NUMB" in
         " 0")
-            WORKSPACE="%{F#$altfg}%{F-}${w1}%{F#$altfg}${w2}${w3}${w4}${w5}${w6}%{F-}";;
+            WORKSPACE="$altfgf%{F-}${w1}$altfgf${w2}${w3}${w4}${w5}${w6}%{F-}";;
         " 1")
-            WORKSPACE="%{F#$altfg}${w1}%{F-}${w2}%{F#$altfg}${w3}${w4}${w5}${w6}%{F-}";;
+            WORKSPACE="$altfgf${w1}%{F-}${w2}$altfgf${w3}${w4}${w5}${w6}%{F-}";;
         " 2")
-            WORKSPACE="%{F#$altfg}${w1}${w2}%{F-}${w3}%{F#$altfg}${w4}${w5}${w6}%{F-}";;
+            WORKSPACE="$altfgf${w1}${w2}%{F-}${w3}$altfgf${w4}${w5}${w6}%{F-}";;
         " 3")
-            WORKSPACE="%{F#$altfg}${w1}${w2}${w3}%{F-}${w4}%{F#$altfg}${w5}${w6}%{F-}";;
+            WORKSPACE="$altfgf${w1}${w2}${w3}%{F-}${w4}$altfgf${w5}${w6}%{F-}";;
         " 4")
-            WORKSPACE="%{F#$altfg}${w1}${w2}${w3}${w4}%{F-}${w5}%{F#$altfg}${w6}%{F-}";;
+            WORKSPACE="$altfgf${w1}${w2}${w3}${w4}%{F-}${w5}$altfgf${w6}%{F-}";;
         " 5")
-            WORKSPACE="%{F#$altfg}${w1}${w2}${w3}${w4}${w5}%{F-}${w6}%{F#$altfg}%{F-}";;
+            WORKSPACE="$altfgf${w1}${w2}${w3}${w4}${w5}%{F-}${w6}$altfgf%{F-}";;
 
         esac
         echo "$WORKSPACE"
@@ -188,6 +193,7 @@ function floatbars
     #     -r $borderwidth \
     #     -g 400x$height+925+715 | sh &
 }
+
 
 function topbar
 {

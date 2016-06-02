@@ -6,7 +6,7 @@ fg=$(getcol 1)
 altfg=$(getcol 3)
 bg=222222
 
-font="-fuyuki-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
+font="-sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="siji:pixelsize=10"
 
 height=30
@@ -109,21 +109,6 @@ function bat
     fi
 }
 
-function wifi
-{
-    strength=$(iwconfig wlp13s0 | grep -i quality | awk '{ printf $2 }' | cut -c 9-10)
-
-    if [ $strength -le 23 ]; then
-        echo ""
-    elif [ $strength -le 46 ]; then
-        echo ""
-    elif [ $strength -le 70 ]; then
-        echo ""
-    else
-        echo ""
-    fi
-}
-
 function wrk
 {
     NUMB=$(xprop -root -notype _NET_CURRENT_DESKTOP | cut -d= -f2);
@@ -159,7 +144,7 @@ function floatbars
         -R \#$fg \
         -u 3 \
         -r $borderwidth \
-        -g 250x$height+85+15 | sh &
+        -g 200x$height+85+15 | sh &
 
     # middle bar
     while true; do
@@ -177,7 +162,7 @@ function floatbars
 
     # right bar
     while true; do
-        buf="%{c}$(wifi)    $(bat)    $(dat)    $(clk)"
+        buf="%{c}$(bat)   $(dat)    $(clk)"
         echo "${buf}"
         sleep 0.1
     done | lemonbar -f $glyphs \
@@ -187,7 +172,7 @@ function floatbars
         -R \#$fg \
         -u 3 \
         -r $borderwidth \
-        -g 250x$height+1035+15 | sh &
+        -g 200x$height+1075+15 | sh &
 
     # # music bar
     # while true; do

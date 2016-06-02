@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dmenu_run -fn -fuyuki-tangerine-*-*-*-*-*-*-*-*-*-*-*-* \
+dmenu_run -fn -sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-* \
     -nb \#222222 \
     -nf \#$(getcol 1) \
     -sb \#$(getcol 1) \

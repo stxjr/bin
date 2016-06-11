@@ -1,6 +1,4 @@
-
-
-#!/bin/bash
+#!/bin/sh
 # Simple mixtape uploader by @sugoiuguu
 # Requires curl and jshon (http://kmkeen.com/jshon/)
 

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-scrot -e 'mv $f ~/pics/scrots'
+scrot -e 'mv $f ~/usr/pics/scrots'

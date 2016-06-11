@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case $1 in
+    mint) color="3eb489" ;;
+    teal) color="35a0a0" ;;
+    red) color="cf4c66" ;;
+    nxll) color="aadb0f" ;;
+    gold) color="cfb53b" ;;
+    [0-9,a-f][0-9,a-f][0-9,a-f][0-9,a-f][0-9,a-f][0-9,a-f]) color="$1" ;;
+    *) printf "usage: $(basename $0) color|123456" && exit 1 ;;
+esac
+
+sed -i "11s/.*/\*.color1:       \#${color}/" ~/.colors/monol
+sed -i "12s/.*/\*.color9:       \#${color}/" ~/.colors/monol
+
+sed -i "11s/.*/\*.color1:       \#${color}/" ~/.colors/monod
+sed -i "12s/.*/\*.color9:       \#${color}/" ~/.colors/monod
+
+xrdb ~/.Xresources
+
+bar.sh

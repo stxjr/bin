@@ -1,10 +1,10 @@
 #!/bin/sh
 
 dmenu_run -fn -sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-* \
-    -nb \#222222 \
+    -nb \#dfdfdf \
     -nf \#$(getcol 1) \
     -sb \#$(getcol 1) \
-    -sf \#e8e8ea \
+    -sf \#dddddd \
     -h 36 \
     -x 85 \
     -y 15 \

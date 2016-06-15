@@ -1,0 +1,13 @@
+#!/bin/sh
+
+playing=$(mpc status | sed -n 2p | awk '{print $1}')
+
+if [ $playing = "[playing]" ] ; then
+    sym=""
+elif [ $playing = "[paused]" ] ; then
+    sym=""
+fi
+
+out=$(mpc current -f "[%title%;[ %artist%][ %album%]]|%file%")
+
+printf "$sym $out"

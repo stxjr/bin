@@ -1,0 +1,7 @@
+#!/bin/sh
+
+sym=""
+
+out=$(date '+%B %d' | tr [A-Z] [a-z])
+
+printf "$sym $out"

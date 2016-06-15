@@ -1,0 +1,22 @@
+#!/bin/sh
+
+fg=$(getcol 1)
+altfg=$(getcol 3)
+borderfg=$(getcol 1)
+bg=$(getcol bg)
+
+font="-sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
+glyphs="siji:pixelsize=10"
+
+height=30
+borderwidth=2
+
+duration=3
+
+size="200x30+1085+15"
+
+args="-f $glyphs -f $font -F #$fg -B #$bg -R #$borderfg -u 3 -r $borderwidth -g $size"
+
+# Create the popup and make it live for 3 seconds
+(echo "%{c}$@"; sleep ${duration}) | \
+    lemonbar ${args} | sh &

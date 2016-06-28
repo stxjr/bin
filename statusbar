@@ -1,23 +1,30 @@
 #!/bin/sh
 
+# get rid of any other bars
 pkill lemonbar
 
+# get colors
 fg=$(getcol 1)
 altfg=$(getcol 7)
 borderfg=$(getcol 1)
 bg=$(getcol bg)
 
+# predone color selects
 fgf="%{F#$fg}"
 altfgf="%{F#$altfg}"
 bgf="%{F#$bg}"
 endf="%{F-}"
 
+# fonts
 font="-sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="siji:pixelsize=10"
 
+# geometries
+width=200
 height=30
 borderwidth=2
 
+# workspace icons
 w1=""
 w2=""
 w3=""
@@ -48,15 +55,13 @@ wrk()
 }
 
 while true; do
-    buf="%{c}$(wrk)" 
+    buf="%{c}$(~/bin/bar/dat)    $(~/bin/bar/clk)" 
     echo "$buf"
-    sleep 0.1
+    sleep 1
 done | lemonbar \
     -f $glyphs \
     -f $font \
     -F \#$fg \
     -B \#$bg \
-    -R \#$borderfg \
     -u 3 \
-    -r $borderwidth \
-    -g 150x$height+606+15 | sh &
+    -g ${width}x${height}+50+20 | sh &

@@ -9,13 +9,13 @@ font="-sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="siji:pixelsize=10"
 
 height=30
-borderwidth=2
-
 duration=3
+barw=${barw:-200}
+barh=${barh:-30}
+barx=${barx:-1116}
+bary=${bary:-20}
 
-size="200x30+1085+15"
-
-args="-f $glyphs -f $font -F #$fg -B #$bg -R #$borderfg -u 3 -r $borderwidth -g $size"
+args="-f $glyphs -f $font -F #$fg -B #$bg -u 3 -g ${barw}x${barh}+${barx}+${bary}"
 
 # Create the popup and make it live for 3 seconds
 (echo "%{c}$@"; sleep ${duration}) | \

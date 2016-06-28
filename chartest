@@ -16,4 +16,4 @@ printf "\n"
 echo -n "                         ! @ # $ % ^ & * : ; . , / \ \`"
 printf "\n"
 
-printf "\033[m"
+tput sgr0

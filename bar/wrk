@@ -1,7 +1,0 @@
-#!/bin/sh
-
-sym=""
-
-out=$(amixer get Master | sed -n 5p | awk '{print $3}')
-
-printf "$sym $out"

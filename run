@@ -1,0 +1,12 @@
+#!/bin/sh
+
+dmenu_run -fn -sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-* \
+    -nb \#$(getcol bg) \
+    -nf \#$(getcol 5) \
+    -sb \#$(getcol bg) \
+    -sf \#$(getcol 1) \
+    -p ";" \
+    -h 30 \
+    -x 375 \
+    -y 20 \
+    -w 616

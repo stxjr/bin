@@ -2,6 +2,10 @@
 
 sym=""
 
-out=$(date '+%B %d' | tr [A-Z] [a-z])
+out=$(date '+%a, %B %d' | tr [A-Z] [a-z])
 
-printf "$sym $out"
+if [ "$1" = "-s" ]; then
+    printf "$out"
+else
+    printf "$sym $out"
+fi

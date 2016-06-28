@@ -5,7 +5,6 @@ case $1 in
     teal) color="4e9393" ;;
     red) color="cf4c66" ;;
     nxll) color="aadb0f" ;;
-    gold) color="cfb53b" ;;
     [0-9,a-f][0-9,a-f][0-9,a-f][0-9,a-f][0-9,a-f][0-9,a-f]) color="$1" ;;
     *) printf "usage: $(basename $0) color\n" && exit 1 ;;
 esac
@@ -18,4 +17,4 @@ sed -i "12s/.*/\*.color9:       \#${color}/" ~/.colors/monod
 
 xrdb ~/.Xresources
 
-bar.sh
+statusbar

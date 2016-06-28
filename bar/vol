@@ -4,4 +4,8 @@ sym=""
 
 out=$(amixer get Master | sed -n 5p | awk '{print $3}')
 
-printf "$sym $out"
+if [ "$1" = "-s" ]; then
+    printf "$out"
+else
+    printf "$sym $out"
+fi

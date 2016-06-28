@@ -17,4 +17,8 @@ else
     fi
 fi
 
-printf "$sym $out"
+if [ "$1" = "-s" ]; then
+    printf "$out"
+else
+    printf "$sym $out"
+fi

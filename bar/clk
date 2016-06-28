@@ -4,4 +4,8 @@ sym=""
 
 out=$(date "+%l;%M" | sed 's/ //g')
 
-printf "$sym $out"
+if [ "$1" = "-s" ]; then
+    printf "$out"
+else
+    printf "$sym $out"
+fi

@@ -8,6 +8,10 @@ elif [ $playing = "[paused]" ] ; then
     sym=""
 fi
 
-out=$(mpc current -f "[%title%;[ %artist%][ %album%]]|%file%")
+out=$(mpc current -f "[[%artist%|%album%]; %title%]|%file%")
 
-printf "$sym $out"
+if [ "$1" = "-s" ]; then
+    printf "$out"
+else
+    printf "$sym $out"
+fi

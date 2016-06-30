@@ -3,34 +3,8 @@
 # get rid of any other bars
 pkill lemonbar
 
-# get colors
-fg=$(getcol 1)
-altfg=$(getcol 7)
-borderfg=$(getcol 1)
-bg=$(getcol bg)
-
-# predone color selects
-fgf="%{F#$fg}"
-altfgf="%{F#$altfg}"
-bgf="%{F#$bg}"
-endf="%{F-}"
-
-# fonts
-font="-sythe-tangerine-*-*-*-*-*-*-*-*-*-*-*-*"
-glyphs="siji:pixelsize=10"
-
-# geometries
-width=200
-height=30
-borderwidth=2
-
-# workspace icons
-w1=""
-w2=""
-w3=""
-w4=""
-w5=""
-w6=""
+# configs
+source ~/.config/barconf
 
 wrk()
 {
@@ -65,3 +39,15 @@ done | lemonbar \
     -B \#$bg \
     -u 3 \
     -g ${width}x${height}+50+20 | sh &
+
+while true; do
+    buf="%{c}$(wrk)" 
+    echo "$buf"
+    sleep 0.05
+done | lemonbar \
+    -f $glyphs \
+    -f $font \
+    -F \#$fg \
+    -B \#$bg \
+    -u 3 \
+    -g $((${width} - 50))x${height}+609+20 | sh &

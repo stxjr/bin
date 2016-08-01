@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ~/.config/barconf
+
 sym=""
 
 out=$(date "+%l;%M" | sed 's/ //g')

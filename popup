@@ -1,18 +1,18 @@
 #!/bin/sh
 
-source ~/.config/barconf
+. ~/.config/barconf
 
 # time to stay up
-panelduration=3
+duration=3
 
 # dynamic geometries
-panelw=${panelw:-200}
-panelh=${panelh:-30}
-panelx=${panelx:-1116}
-panely=${panely:-20}
+length=${length:-250}
+height=${height:-30}
+xpos=${xpos:-50}
+ypos=${ypos:-20}
 
-args="-f $glyphs -f $font -F #$fg -B #$bg -u 3 -g ${panelw}x${panelh}+${panelx}+${panely}"
+args="-f $glyphs -f $font -F #$fg -B #$bg -u 3 -g ${length}x${height}+${xpos}+${ypos}"
 
 # Create the popup and make it live for 3 seconds
-(echo "%{c}$@"; sleep ${panelduration}) | \
+(echo "%{c}$@"; sleep ${duration}) | \
     lemonbar ${args} | sh &

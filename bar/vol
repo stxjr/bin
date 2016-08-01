@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ~/.config/barconf
+
 sym=""
 
 out=$(amixer get Master | sed -n 5p | awk '{print $3}')

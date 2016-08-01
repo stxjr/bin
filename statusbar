@@ -4,7 +4,7 @@
 pkill lemonbar
 
 # configs
-source ~/.config/barconf
+. ~/.config/barconf
 
 wrk()
 {
@@ -23,31 +23,19 @@ wrk()
         " 5")
             WORKSPACE="$altfgf${w1}${w2}${w3}${w4}${w5}%{F-}${w6}$altfgf%{F-}";;
         *)
-            WORKSPACE="$altfgf${w1}${w2}${w3}${w4}${w5}${w6}";;
+            WORKSPACE="$altfgf${w1}${w2}${w3}${w4}${w5}${w6}$fg";;
     esac
     echo "$WORKSPACE"
 }
 
 while true; do
-    buf="%{c}$(~/bin/bar/dat)    $(~/bin/bar/clk)" 
+    buf="%{c}$(~/bin/bar/clk)    $(wrk)" 
     echo "$buf"
-    sleep 1
+    sleep 0.1
 done | lemonbar \
     -f $glyphs \
     -f $font \
     -F \#$fg \
     -B \#$bg \
     -u 3 \
-    -g ${width}x${height}+50+20 | sh &
-
-while true; do
-    buf="%{c}$(wrk)" 
-    echo "$buf"
-    sleep 0.05
-done | lemonbar \
-    -f $glyphs \
-    -f $font \
-    -F \#$fg \
-    -B \#$bg \
-    -u 3 \
-    -g $((${width} - 50))x${height}+609+20 | sh &
+    -g ${length}x${height}+50+20 | sh &

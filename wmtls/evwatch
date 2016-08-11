@@ -3,7 +3,7 @@
 while IFS=: read ev wid; do
     case $ev in
         # creation
-        16) wattr 0 $wid || focusw $wid && cornerw mm $wid ;;
+        16) wattr o $wid || (focusw $wid && cornerw mm $wid) ;;
 
         # mapping req
         19) wattr o $wid || focusw $wid ;;

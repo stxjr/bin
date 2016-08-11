@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 CUR=${2:-$(pfw)}
 ROOT=$(lsw -r)
@@ -9,19 +9,23 @@ BW=$(wattr b $CUR)
 W=$(wattr w $CUR)
 H=$(wattr h $CUR)
 
-coord="20"
-X=$coord
-Y=$coord
-num=$coord/$BW
+gap=10
+X=$gap
+Y=$gap
 
 case $1 in
-    #tr) X=$((SW - W - BW*2)) ;;
-    tr) X=$((SW - W - BW*$num)) ;;
-    bl) Y=$((SH - H - BW*$num)) ;;
-    br) X=$((SW - W - BW*$num))
-        Y=$((SH - H - BW*$num)) ;;
+    tm) X=$((SW/2 - W/2 - BW)) ;;
+    tr) X=$((SW - W - BW * 2 - $gap)) ;;
+    ml) Y=$((SH/2 - H/2 - BW)) ;;
     mm) X=$((SW/2 - W/2 - BW))
-        Y=$((SH/2 - H/2 - BW));;
+        Y=$((SH/2 - H/2 - BW)) ;;
+    mr) X=$((SW - W - BW * 2 - $gap))
+        Y=$((SH/2 - H/2 - BW)) ;;
+    bl) Y=$((SH - H - BW * 2 - $gap)) ;;
+    bm) X=$((SW/2 - W/2 - BW))
+        Y=$((SH - H - BW * 2 - $gap)) ;;
+    br) X=$((SW - W - BW * 2 - $gap))
+        Y=$((SH - H - BW * 2 - $gap)) ;;
 esac
 
 wtp $X $Y $W $H $CUR

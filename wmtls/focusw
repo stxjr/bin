@@ -5,7 +5,7 @@
 
 borderwidth=${borderwidth:-3}
 focusedcol=${focuscol:-0x$(getcol 1)}
-unfocusedcol=${unfocusedcol:-0x$(getcol bg)}
+unfocusedcol=${unfocusedcol:-0x$(getcol 7)}
 
 # get current window id
 CUR=$(pfw)

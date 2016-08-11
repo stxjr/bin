@@ -4,23 +4,24 @@
 pkill lemonbar
 
 # configs
-. ~/.config/barconf
+. ~/.barconf
 
 wrk()
 {
-    NUMB=$(xprop -root -notype _NET_CURRENT_DESKTOP | cut -d= -f2);
+    # NUMB=$(xprop -root -notype _NET_CURRENT_DESKTOP | cut -d= -f2);
+    NUMB="$(cat /tmp/workspaces/curr)";
     case "$NUMB" in
-        " 0")
+        "0")
             WORKSPACE="$altfgf%{F-}${w1}$altfgf${w2}${w3}${w4}${w5}${w6}%{F-}";;
-        " 1")
+        "1")
             WORKSPACE="$altfgf${w1}%{F-}${w2}$altfgf${w3}${w4}${w5}${w6}%{F-}";;
-        " 2")
+        "2")
             WORKSPACE="$altfgf${w1}${w2}%{F-}${w3}$altfgf${w4}${w5}${w6}%{F-}";;
-        " 3")
+        "3")
             WORKSPACE="$altfgf${w1}${w2}${w3}%{F-}${w4}$altfgf${w5}${w6}%{F-}";;
-        " 4")
+        "4")
             WORKSPACE="$altfgf${w1}${w2}${w3}${w4}%{F-}${w5}$altfgf${w6}%{F-}";;
-        " 5")
+        "5")
             WORKSPACE="$altfgf${w1}${w2}${w3}${w4}${w5}%{F-}${w6}$altfgf%{F-}";;
         *)
             WORKSPACE="$altfgf${w1}${w2}${w3}${w4}${w5}${w6}$fg";;
@@ -29,13 +30,14 @@ wrk()
 }
 
 while true; do
-    buf="%{c}$(~/bin/bar/clk)    $(wrk)" 
+    buf="%{c}$(~/bin/bar/clk)    $(~/bin/bar/dat)" 
     echo "$buf"
-    sleep 0.1
+    sleep 1
 done | lemonbar \
     -f $glyphs \
     -f $font \
     -F \#$fg \
     -B \#$bg \
     -u 3 \
-    -g ${length}x${height}+50+20 | sh &
+    -d \
+    -g ${barlength}x${barheight}+50+20 | sh &

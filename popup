@@ -1,17 +1,11 @@
 #!/bin/sh
 
-. ~/.config/barconf
+. ~/.barconf
 
 # time to stay up
 duration=3
 
-# dynamic geometries
-length=${length:-250}
-height=${height:-30}
-xpos=${xpos:-50}
-ypos=${ypos:-20}
-
-args="-f $glyphs -f $font -F #$fg -B #$bg -u 3 -g ${length}x${height}+${xpos}+${ypos}"
+args="-d -f $glyphs -f $font -F #$fg -B #$bg -u 3 -g ${length:-250}x${height:-30}+${xpos:-1066}+${ypos:-20}"
 
 # Create the popup and make it live for 3 seconds
 (echo "%{c}$@"; sleep ${duration}) | \

@@ -36,6 +36,10 @@ move_to_ws() {
 		echo "Workspace not found"
 		return
 	fi
+	if [ $ws_num = $(cat /tmp/workspaces/curr) ]; then
+		echo "workspace is already shown"
+		return
+	fi
 	save_ws
 	curr_windows=$(lsw)
 	if [ "$curr_windows" ]; then
@@ -75,6 +79,10 @@ move_focused_window() {
 	ws_num=$1
 	if [ $ws_num -gt $NUM_WS ] || [ $ws_num -lt 0 ]; then
 		echo "Workspace not found"
+		return
+	fi
+	if [ $ws_num = $(cat /tmp/workspaces/curr) ]; then
+		echo "window is already on this workspace"
 		return
 	fi
 	wid=$(pfw)

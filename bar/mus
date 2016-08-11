@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ~/.config/barconf
+. ~/.barconf
 
 sym=""
 

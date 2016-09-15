@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-T='crf'
+T='nxr'
 
 echo -e "\n         def     40m     41m     42m     43m     44m     45m     46m     47m";
 

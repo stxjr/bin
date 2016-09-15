@@ -1,13 +1,11 @@
 #!/bin/sh
 
-. ~/.barconf
-
 sym=""
 
 out=$(date '+%a; %B %d' | tr [A-Z] [a-z])
 
 if [ "$1" = "-s" ]; then
-    printf "$out"
+    echo "$out"
 else
-    printf "$sym $out"
+    echo "%{R} $sym %{R}  $out"
 fi

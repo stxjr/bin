@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. ~/.barconf
-
 out=$(cat /sys/class/power_supply/BAT1/capacity)
 
 status=$(cat /sys/class/power_supply/BAT1/status)
@@ -21,10 +19,8 @@ else
     fi
 fi
 
-# sym=""
-
 if [ "$1" = "-s" ]; then
-    printf "$out"
+    echo "$out"
 else
-    printf "$sym $out"
+    echo "%{R} $sym %{R}  $out"
 fi

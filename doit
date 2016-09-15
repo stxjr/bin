@@ -1,0 +1,7 @@
+#!/bin/sh
+
+file="./dofile"
+
+if [ -e "$file" ]; then
+    sh $file
+fi

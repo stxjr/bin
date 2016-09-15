@@ -1,0 +1,38 @@
+#!/bin/sh
+
+pkgmgr='pacaur --color=auto --noedit'
+
+usage() 
+{
+    printf "usage: $(basename $0) [ir package] [uqsc]\n"
+    exit 1
+}
+
+case "$1" in 
+    i|install)
+        shift
+        $pkgmgr -S $@
+        ;;
+    r|remove)
+        shift
+        $pkgmgr -Rns $@
+        ;;
+    q|query)
+        shift
+        $pkgmgr -Q $@
+        ;;
+    u|upgrade)
+        $pkgmgr -Syu
+        ;;
+    s|search)
+        shift
+        $pkgmgr -Ss $@
+        ;;
+    c|clean)
+        $pkgmgr -Rns $($pkgmgr -Qdtq) 2>/dev/null || \
+            printf "no packages to clean\n"
+        ;;
+    *)
+        usage
+        ;;
+esac

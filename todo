@@ -1,0 +1,33 @@
+#!/bin/sh
+
+file="$HOME/usr/doc/todo"
+
+[ -e "$file" ] || touch $file
+
+usage() 
+{
+    printf  "usage: $(basename $0) [le] [ar item]\n"
+    exit 1
+}
+
+case "$1" in 
+    l|list)
+        nl $file ;;
+    a|add)
+        shift
+        echo "$@" >> $file
+        nl $file
+        ;;
+    r|remove)
+        [ -n "$2" ] \
+            && sed -i -e $2'd' $file \
+            || usage
+        nl $file
+        ;;
+    e|edit)
+        ${EDITOR:-vim} $file ;;
+    "")
+        nl $file ;;
+    *)
+        usage ;;
+esac

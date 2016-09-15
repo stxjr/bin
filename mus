@@ -1,21 +1,23 @@
 #!/bin/sh
 
-. ~/.barconf
-
 sym=""
 
 playing=$(mpc status | sed -n 2p | cut -d " " -f 1)
 
-if [ $playing = "\[playing\]" ] ; then
+if [ "$playing" = "\[playing\]" ] ; then
     sym2=""
-elif [ $playing = "\[paused\]" ] ; then
+elif [ "$playing" = "\[paused\]" ] ; then
     sym2=""
 fi
 
 out=$(mpc current -f "[%artist% ; %title%]|[%file%]")
 
+if [ "$out" = "" ]; then
+    out="stopped"
+fi
+
 if [ "$1" = "-s" ]; then
-    printf "$out"
+    echo "$out"
 else
-    printf "$sym $out"
+    echo "%{R} ${sym} %{R}  $out"
 fi

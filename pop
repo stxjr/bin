@@ -1,0 +1,15 @@
+#!/bin/sh
+
+font="-sxthe-yuki-*-*-*-*-*-*-*-*-*-*-*-*"
+glyphs="-*-siji-*-*-*-*-*-*-*-*-*-*-*-*"
+
+fg=$(getcol 1)
+altfg=$(getcol 3)
+bg=$(getcol bg)
+
+# time to stay up
+sleep=3
+
+# Create the popup and make it live for 3 seconds
+(echo "%{c}$@"; sleep $sleep) | \
+    lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -g ${length:-250}x${height:-25}+${xpos:-1066}+${ypos:-20} | sh &

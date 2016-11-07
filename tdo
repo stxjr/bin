@@ -1,4 +1,5 @@
 #!/bin/sh
+# tdo - manage todo files
 
 file="$HOME/usr/doc/todo"
 
@@ -10,24 +11,34 @@ usage()
     exit 1
 }
 
+prn()
+{
+    printf "  t             d       \n"
+    printf "ttttt  ooo   dddd   ooo \n"
+    printf "  t   o   o d   d  o   o\n"
+    printf "  t   o   o d   d  o   o\n"
+    printf "   t   ooo   dddd   ooo \n"
+    nl $file
+}
+
 case "$1" in 
     l|list)
-        nl $file ;;
+        prn ;;
     a|add)
         shift
         echo "$@" >> $file
-        nl $file
+        prn
         ;;
     r|remove)
         [ -n "$2" ] \
             && sed -i -e $2'd' $file \
             || usage
-        nl $file
+        prn
         ;;
     e|edit)
         ${EDITOR:-vim} $file ;;
     "")
-        nl $file ;;
+        prn ;;
     *)
         usage ;;
 esac

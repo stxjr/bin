@@ -1,4 +1,5 @@
 #!/bin/sh
+# vol - lemonbar script to get volume
 
 sym=""
 

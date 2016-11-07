@@ -1,6 +1,5 @@
 #!/bin/sh
-#
-# info - get system infos
+# inf - get system infos
 
 _hi="$(tput setaf 1)"
 _fg="$(tput setaf fg)"
@@ -14,14 +13,14 @@ _shell="${SHELL}"
 _wm="$(grep -v ^# ~/.xinitrc | tail -n 1 | cut -d' ' -f2)"
 _up_day="$()"
 
-_art_1="    ${_hi}        ;;;;        ${_fg}"
-_art_2="    ${_hi}       ; ;;;;       ${_fg}"
-_art_3="    ${_hi}      ;;;;;;;;      ${_fg}"
-_art_4="    ${_hi}     ;;;;;;;;;;     ${_fg}"
-_art_5="    ${_hi}    ;;;;;;;;;;;;    ${_fg}"
-_art_6="    ${_hi}   ;;;;;;  ;;;; ;   ${_fg}"
-_art_7="    ${_hi}  ;;;;;;    ;;;;;;  ${_fg}"
-_art_8="    ${_hi} ;;;;;        ;;;;; ${_fg}"
+_art_1="${_hi}        ;;;;        ${_fg}"
+_art_2="${_hi}       ; ;;;;       ${_fg}"
+_art_3="${_hi}      ;;;;;;;;      ${_fg}"
+_art_4="${_hi}     ;;;;;;;;;;     ${_fg}"
+_art_5="${_hi}    ;;;;;;;;;;;;    ${_fg}"
+_art_6="${_hi}   ;;;;;;  ;;;; ;   ${_fg}"
+_art_7="${_hi}  ;;;;;;    ;;;;;;  ${_fg}"
+_art_8="${_hi} ;;;;;        ;;;;; ${_fg}"
 
 # hacky: adjust ${_user} to align username width
 _info_1="   ${_user} ${_hi};${_fg} ${_host}"

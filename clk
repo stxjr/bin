@@ -1,4 +1,5 @@
 #!/bin/sh
+# clk - lemonbar script to get time
 
 sym=""
 

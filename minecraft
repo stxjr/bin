@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# yes i play minecraft
-# get over it
-
-java -jar ~/var/mineshafter.jar

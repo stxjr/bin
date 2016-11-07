@@ -1,0 +1,17 @@
+#!/bin/sh
+# sts - statusbar
+
+pkill bar
+
+font="-sxthe-yuki-*-*-*-*-*-*-*-*-*-*-*-*"
+glyphs="-*-siji-*-*-*-*-*-*-*-*-*-*-*-*"
+
+fg=$(gtc 1)
+altfg=$(gtc 3)
+bg="ff$(gtc bg)"
+
+while true; do
+    buf="%{l}$(clk)    $(dat)"
+    echo "    $buf    "
+    sleep 1
+done | lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -g 250x25+50+20 &

@@ -1,12 +1,13 @@
 #!/bin/sh
+# run - dmenu with options
 
 dmenu_run -fn -sxthe-yuki-*-*-*-*-*-*-*-*-*-*-*-* \
-    -nb \#$(getcol bg) \
-    -nf \#$(getcol 5) \
-    -sb \#$(getcol bg) \
-    -sf \#$(getcol 1) \
+    -nb \#$(gtc bg) \
+    -nf \#$(gtc 5) \
+    -sb \#$(gtc bg) \
+    -sf \#$(gtc 1) \
     -p ";" \
-    -h 30 \
+    -h 25 \
     -x 375 \
     -y 20 \
     -w 616

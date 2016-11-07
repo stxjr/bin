@@ -1,10 +1,19 @@
 #!/bin/sh
+# pkg - pacman wrapper
 
 pkgmgr='pacaur --color=auto --noedit'
 
 usage() 
 {
-    printf "usage: $(basename $0) [ir package] [uqsc]\n"
+    cat << EOF
+usage: $(basename $0) [ir package] [q query] [suc]
+    i ; install package
+    r ; remove package
+    q ; list installed packages
+    u ; system update
+    s ; search
+    c ; clean unneeded packages
+EOF
     exit 1
 }
 

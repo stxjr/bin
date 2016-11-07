@@ -1,4 +1,5 @@
 #!/bin/sh
+# mus - lemonbar script to get music
 
 sym=""
 

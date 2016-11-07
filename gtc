@@ -1,4 +1,5 @@
 #!/bin/sh
+# gtc - get xrdb color
 
 if [ "$1" = "fg" ]; then
     xrdb -query | grep "foreground" | awk '{printf $2}' | cut -z -c 2-7

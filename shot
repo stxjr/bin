@@ -1,3 +1,0 @@
-#!/bin/sh
-
-scrot -e 'mv $f ~/usr/img/scrots'

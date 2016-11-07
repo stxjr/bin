@@ -1,0 +1,37 @@
+#!/bin/sh
+# mdc - markdown compiler
+
+usage()
+{
+    printf "usage: $(basename $0) file.md"
+    exit 1
+}
+
+file="$1"
+dest="$(echo $file | sed 's/\.md/\.html/')"
+header=/home/sxthe/src/web/var/header.html
+footer=/home/sxthe/src/web/var/footer.html
+
+[ -z "$file" ] && exit 1
+
+cat <<EOF > $dest
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <title></title>
+    </head>
+    <body>
+        <main>
+
+        <br><br><br>
+EOF
+  
+pandoc -S -f markdown -t html $file >> $dest
+
+cat <<EOF >> $dest
+        </main>
+    </body>
+</html>
+EOF

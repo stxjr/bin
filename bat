@@ -1,4 +1,5 @@
 #!/bin/sh
+# bat - lemonbar script to get battery
 
 out=$(cat /sys/class/power_supply/BAT1/capacity)
 

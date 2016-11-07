@@ -1,3 +1,4 @@
 #!/bin/sh
+# upl - upload something to 0x0.st
 
-curl -F"file=@$1" https://0x0.st
+curl -F"file=@$@" https://0x0.st

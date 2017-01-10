@@ -3,15 +3,90 @@
 
 pkill bar
 
-font="-sxthe-yuki-*-*-*-*-*-*-*-*-*-*-*-*"
+font="-sxthe-terra-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="-*-siji-*-*-*-*-*-*-*-*-*-*-*-*"
 
-fg=$(gtc 1)
-altfg=$(gtc 3)
-bg="ff$(gtc bg)"
+fg="$(gtc 0)"
+altfg="$(gtc 1)"
+bg="$(gtc bg)"
+altbg="$(gtc 7)"
+
+altify()
+{
+    echo -en "%{B#$altbg}%{F#$altfg} $1 %{B-}%{F-}"
+}
+
+clk()
+{
+    sym="$(altify )"
+    out=$(date "+%0l × %M")
+
+    # echo "$sym  $out"
+    echo "$(altify "$out")"
+}
+
+dat()
+{
+    sym="$(altify )"
+    out=$(date '+%a × %b %d' | tr '[A-Z]' '[a-z]')
+
+    echo "$sym  $out"
+}
+
+mus()
+{
+
+    playing=$(mpc status | sed -n 2p | cut -d " " -f 1 | tr -d "[]")
+
+    if [ "$playing" = "playing" ] ; then
+        sym="$(altify )"
+    elif [ "$playing" = "paused" ] ; then
+        sym="$(altify )"
+    fi
+
+    out=$(mpc current -f "[%artist% × %title%]|[%file%]")
+
+    if [ "$out" = "" ]; then
+        out="stopped"
+    fi
+
+    echo "$sym  $out"
+}
+
+bat()
+{
+    out=$(cat /sys/class/power_supply/BAT1/capacity)
+
+    status=$(cat /sys/class/power_supply/BAT1/status)
+    if test $status = "Charging"; then
+        sym="$(altify )"
+    elif test $status = "Full"; then
+        sym="$(altify )"
+    elif test $status = "Unknown"; then
+        sym="$(altify ?)"
+    else
+        if test $out -gt 66; then
+            sym="$(altify )"
+        elif test $out -gt 34; then
+            sym="$(altify )"
+        else
+            sym="$(altify )"
+        fi
+    fi
+
+    echo "$sym  $out"
+}
+
+vol()
+{
+    sym="$(altify )"
+    out=$(amixer get Master | sed -n 5p | awk '{print $3}')
+
+    echo "$sym  $out"
+}
 
 while true; do
-    buf="%{l}$(clk)    $(dat)"
-    echo "    $buf    "
-    sleep 1
-done | lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -g 250x25+50+20 &
+    buf="$(mus)%{r}$(vol)  $(bat)  $(dat)  $(clk)"
+    echo "$buf"
+    sleep 0.1
+done | lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -g x20 &

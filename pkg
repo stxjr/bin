@@ -42,6 +42,6 @@ case "$1" in
             printf "no packages to clean\n"
         ;;
     *)
-        usage
+        $pkgmgr $@
         ;;
 esac

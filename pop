@@ -1,6 +1,8 @@
 #!/bin/sh
 # pop - lemonbar popup
 
+# pkill lemonbar
+
 font="-sxthe-yuki-*-*-*-*-*-*-*-*-*-*-*-*"
 glyphs="-*-siji-*-*-*-*-*-*-*-*-*-*-*-*"
 
@@ -12,9 +14,7 @@ name="popupbar"
 # time to stay up
 sleep=3
 
-ps aux | grep popupbar | grep -v grep | cut -d" " -f6 | xargs kill
-
 # Create the popup and make it live for 3 seconds
-(echo "    %{l}$@    "; sleep $sleep) | \
+(echo "%{l}$@"; sleep $sleep) | \
     lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -n "$name" \
-    -g ${length:-250}x${height:-25}+${xpos:-50}+${ypos:-30} | sh &
+    -g ${length:-250}x${height:-25}+${xpos:-50}+${ypos:-30} | sh

@@ -1,13 +1,9 @@
 #!/bin/sh
 # run - dmenu with options
 
-dmenu_run -fn -sxthe-yuki-*-*-*-*-*-*-*-*-*-*-*-* \
+dmenu_run -fn -sxthe-terra-*-*-*-*-*-*-*-*-*-*-*-* \
     -nb \#$(gtc bg) \
     -nf \#$(gtc 5) \
-    -sb \#$(gtc bg) \
+    -sb \#$(gtc 7) \
     -sf \#$(gtc 1) \
-    -p ";" \
-    -h 25 \
-    -x 375 \
-    -y 20 \
-    -w 616
+    -h 20 \

@@ -3,32 +3,31 @@
 
 pkill bar
 
-font="-sxthe-terra-*-*-*-*-*-*-*-*-*-*-*-*"
-glyphs="-*-siji-*-*-*-*-*-*-*-*-*-*-*-*"
+font="-sxthe-terra-*-*-*-*-*-*-*-*-*-*-*-*" glyphs="-*-siji-*-*-*-*-*-*-*-*-*-*-*-*"
 
-fg="$(gtc 0)"
-altfg="$(gtc 1)"
-bg="$(gtc bg)"
-altbg="$(gtc 7)"
+fg="`gtc 0`"
+altfg="`gtc 1`"
+bg="`gtc bg`"
+altbg="`gtc bg`"
 
 altify()
 {
-    echo -en "%{B#$altbg}%{F#$altfg} $1 %{B-}%{F-}"
+    echo "%{B#$altbg}%{F#$altfg} $1 %{B-}%{F-}"
 }
 
 clk()
 {
-    sym="$(altify )"
-    out=$(date "+%0l × %M")
+    sym="`altify `"
+    out=`date "+%0l ≓ %M"`
 
     # echo "$sym  $out"
-    echo "$(altify "$out")"
+    echo "`altify "$out"`"
 }
 
 dat()
 {
-    sym="$(altify )"
-    out=$(date '+%a × %b %d' | tr '[A-Z]' '[a-z]')
+    sym="`altify `"
+    out=`date '+%b %d' | tr '[A-Z]' '[a-z]'`
 
     echo "$sym  $out"
 }
@@ -36,41 +35,41 @@ dat()
 mus()
 {
 
-    playing=$(mpc status | sed -n 2p | cut -d " " -f 1 | tr -d "[]")
+    playing=`mpc status | sed -n 2p | cut -d " " -f 1 | tr -d "[]"`
 
     if [ "$playing" = "playing" ] ; then
-        sym="$(altify )"
+        sym="`altify `"
     elif [ "$playing" = "paused" ] ; then
-        sym="$(altify )"
+        sym="`altify `"
     fi
 
-    out=$(mpc current -f "[%artist% × %title%]|[%file%]")
+    out=`mpc current -f "[%artist% ≓ %title%]|[%file%]"`
 
     if [ "$out" = "" ]; then
         out="stopped"
     fi
 
-    echo "$sym  $out"
+    echo "$sym $out"
 }
 
 bat()
 {
-    out=$(cat /sys/class/power_supply/BAT1/capacity)
+    out=`cat /sys/class/power_supply/BAT1/capacity`
 
-    status=$(cat /sys/class/power_supply/BAT1/status)
+    status=`cat /sys/class/power_supply/BAT1/status`
     if test $status = "Charging"; then
-        sym="$(altify )"
+        sym="`altify `"
     elif test $status = "Full"; then
-        sym="$(altify )"
+        sym="`altify `"
     elif test $status = "Unknown"; then
-        sym="$(altify ?)"
+        sym="`altify ?`"
     else
         if test $out -gt 66; then
-            sym="$(altify )"
+            sym="`altify `"
         elif test $out -gt 34; then
-            sym="$(altify )"
+            sym="`altify `"
         else
-            sym="$(altify )"
+            sym="`altify `"
         fi
     fi
 
@@ -79,14 +78,39 @@ bat()
 
 vol()
 {
-    sym="$(altify )"
-    out=$(amixer get Master | sed -n 5p | awk '{print $3}')
+    sym="`altify `"
+    out=`amixer get Master | sed -n 5p | awk '{print $3}'`
 
     echo "$sym  $out"
 }
 
+work()
+{
+    cur=`xprop -root _NET_CURRENT_DESKTOP | sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //'`
+    case $cur in
+        0)
+            echo ""
+            ;;
+        1)
+            echo ""
+            ;;
+        2)
+            echo ""
+            ;;
+        3)
+            echo ""
+            ;;
+        4)
+            echo ""
+            ;;
+        5)
+            echo ""
+            ;;
+    esac
+}
+
 while true; do
-    buf="$(mus)%{r}$(vol)  $(bat)  $(dat)  $(clk)"
+    buf="`mus`%{r}`bat`  `dat`  `clk`"
     echo "$buf"
     sleep 0.1
-done | lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -g x20 &
+done | lemonbar -d -f "$font" -f "$glyphs" -F \#$fg -B \#$bg -g x25 &

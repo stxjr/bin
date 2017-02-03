@@ -1,0 +1,21 @@
+#!/bin/sh
+# bac - backup files incrementally
+
+# where's the backup going?
+destdir="$HOME/var"
+
+# snapshot file
+snap="${destdir}/snapshot.snar"
+
+# space-seperated list of directories to back up
+dirs="$HOME/src/ $HOME/usr/"
+
+# if we're doing a full backup, mark the file as so
+if [ "$1" = "-f" ] || [ ! -f $snap ]; then
+    filename="`hostname`_full_`date '+%H.%M_%m.%d.%y'`.tar.gz"
+    tar cvfzg --level=0 ${destdir}/${filename} $snap $dirs
+else
+    filename="`hostname`_`date '+%H.%M_%m.%d.%y'`.tar.gz"
+    tar cvfzg ${destdir}/${filename} $snap $dirs
+fi
+

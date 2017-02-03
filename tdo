@@ -11,34 +11,34 @@ usage()
     exit 1
 }
 
-prn()
+prt()
 {
-    printf "  t             d       \n"
-    printf "ttttt  ooo   dddd   ooo \n"
-    printf "  t   o   o d   d  o   o\n"
-    printf "  t   o   o d   d  o   o\n"
-    printf "   t   ooo   dddd   ooo \n"
+    printf "    t             d       \n"
+    printf "  ttttt  ooo   dddd   ooo \n"
+    printf "    t   o   o d   d  o   o\n"
+    printf "    t   o   o d   d  o   o\n"
+    printf "     t   ooo   dddd   ooo \n\n"
     nl $file
 }
 
 case "$1" in 
     l|list)
-        prn ;;
+        prt ;;
     a|add)
         shift
         echo "$@" >> $file
-        prn
+        prt
         ;;
     r|remove)
         [ -n "$2" ] \
             && sed -i -e $2'd' $file \
             || usage
-        prn
+        prt
         ;;
     e|edit)
-        ${EDITOR:-vim} $file ;;
+        $EDITOR $file ;;
     "")
-        prn ;;
+        prt ;;
     *)
         usage ;;
 esac

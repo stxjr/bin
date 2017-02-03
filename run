@@ -6,4 +6,4 @@ dmenu_run -fn -sxthe-terra-*-*-*-*-*-*-*-*-*-*-*-* \
     -nf \#$(gtc 5) \
     -sb \#$(gtc 7) \
     -sf \#$(gtc 1) \
-    -h 20 \
+    -h 25 \

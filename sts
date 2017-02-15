@@ -46,7 +46,7 @@ mus()
     out=`mpc current -f "[%artist% ≓ %title%]|[%file%]"`
 
     if [ "$out" = "" ]; then
-        out="stopped"
+        out="≓"
     fi
 
     echo "$sym $out"
